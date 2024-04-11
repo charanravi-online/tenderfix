@@ -1,12 +1,17 @@
-FROM python:3.9-slim
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy only the requirements.txt first to leverage Docker cache
-COPY requirements.txt /app/
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Now copy the rest of the application files
-COPY . /app
+# Install Uvicorn for running the application
+RUN pip install uvicorn
 
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "5000"]
+# Command to run the Uvicorn server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--reload"]

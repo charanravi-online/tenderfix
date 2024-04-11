@@ -1,10 +1,12 @@
-version: '3'
-
+version: '3.8'
 services:
-  web:
+  app:
     build: .
-    command: uvicorn server:app --host 0.0.0.0 --port 5000
     volumes:
-      - .:/app
+      - .:/usr/src/app
+      - ./pdfs:/usr/src/app/pdfs
+      # - ./data.db:/usr/src/app/data.db
+      - ./lookup.csv:/usr/src/app/lookup.csv
+      - ./mapToProducts.csv:/usr/src/app/mapToProducts.csv
     ports:
-      - "5000:5000"
+      - "8000:8000"
