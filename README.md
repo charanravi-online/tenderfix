@@ -21,3 +21,7 @@
    ```
    database: http://localhost:8000/database/
    ```
+
+## Note
+There were time contraints which didn't allow me to work on this project fully.
+But I did get to learn a few things.
